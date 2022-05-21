@@ -44,9 +44,9 @@
                 </div>
             </div>
             <div class="md10">
-              <div wrap class="pa8">
-                <h2 class="pl2">Hello, Gummite 👋</h2>   
-                <w-flex class="mt3" wrap>
+              <div wrap class="pa7">
+                <!-- <h2 class="pl2">Hello, Gummite 👋</h2>    -->
+                <w-flex wrap>
                     <div class="md3 pa2" v-for="i in 8" :key="i">
                         <item></item>
                     </div>
