@@ -14,7 +14,7 @@ export default {
                 <div class="title2 text-bold"><router-link class="navbar-logo" to="/">Gummy🍬</router-link></div>
                 <div class="action-buttons">
                     <w-button class="btn" route="/login" color="light" sm outline>Login</w-button>
-                    <w-button class="btn ml2" route="/" bg-color="success" sm>Create an account</w-button>
+                    <w-button class="btn ml2" route="/signup" bg-color="success" sm>Create an account</w-button>
                 </div>
                 <div v-if="showUserToolbar" class="user-access">
                     <router-link to="/" class="mr5">
