@@ -10,27 +10,22 @@
 <template>
     <div>
         <navbar/>
-        <w-flex wrap>
-            <div class="md2 border-right h-100">
-                <div class="pa3 pl5 pr5">
-                    <p class="text-bold">Filters</p>
-                </div>
-                <w-divider/>
-                <div class="pa3 pl5 pr5">
+        <w-flex>
+            <w-toolbar class="pa0 filter-sidebar" vertical>
+                <div class="pa5">
                     <input class="form-control" placeholder="Search items" type="text">
                 </div>
                 <w-divider/>
-                <div class="pa3 pl5 pr5">
+                <div class="pa5">
                     <p class="text-bold">Categories</p>
                     <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Gaming equipment</span></w-checkbox>
                     <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Cooking utensils</span></w-checkbox>
-                    <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Books</span></w-checkbox><br>
-                    <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Clothings</span></w-checkbox>
+                    <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Books & writing materials</span></w-checkbox>
                     <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Media equipment</span></w-checkbox>
                     <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Musical instruments</span></w-checkbox>
                 </div>
-                <w-divider class="mt4"/>
-                <div class="pa3 pl5 pr5 mt3">
+                <w-divider/>
+                <div class="pa5">
                     <p class="text-bold">Price range</p>
                     <w-flex wrap class="mt3">
                         <div class="md6 pr1">
@@ -42,16 +37,18 @@
                     </w-flex>
                     <w-button class="btn mt2" style="width: 100%;" bg-color="success" sm>Set price range</w-button>
                 </div>
-            </div>
-            <div class="md10">
-              <div wrap class="pa7">
-                <!-- <h2 class="pl2">Hello, Gummite 👋</h2>    -->
-                <w-flex wrap>
-                    <div class="md3 pa2" v-for="i in 8" :key="i">
-                        <item></item>
+            </w-toolbar>
+            <div class="w-flex">
+                <div class="md12">
+                    <div wrap class="pa7">
+                        <!-- <h2 class="pl2">Hello, Gummite 👋</h2>    -->
+                        <w-flex wrap>
+                            <div class="md3 pa2" v-for="i in 12" :key="i">
+                                <item></item>
+                            </div>
+                        </w-flex>
                     </div>
-                </w-flex>
-              </div>
+                </div>
             </div>
         </w-flex>
         <footerVue></footerVue>
@@ -59,11 +56,12 @@
 </template>
 
 <style scoped>
-    .border-right {
-        border-right: 1px solid rgba(0,0,0,.15);
+    .filter-sidebar{
+        width: 230px;
     }
     .filter-checkbox-text{
         font-size: 13px;
         color: black;
+        width: 100%;
     }
 </style>

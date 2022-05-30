@@ -33,15 +33,14 @@ export default {
             <img class="slider-img" :style="custom_style" :src="currentImg" alt="">
         </div>
       </transition-group>
-        <div class="slider-overlay" :style="custom_style">
-            <w-flex justify-end><ion-icon class="add-favorites" name="heart-outline"></ion-icon></w-flex>
-            <div class="slider-overlay-body">
-              <w-flex class="slider-controls" justify-space-between>
-                <ion-icon @click="prev" class="slider-arrow" name="chevron-back-outline"></ion-icon>
-                <ion-icon @click="next" class="slider-arrow" name="chevron-forward-outline"></ion-icon>
-              </w-flex>
-            </div>
+      <div class="slider-overlay" :style="custom_style">
+        <div class="slider-overlay-body">
+          <w-flex class="slider-controls" justify-space-between>
+            <ion-icon @click="prev" class="slider-arrow" name="chevron-back-outline"></ion-icon>
+            <ion-icon @click="next" class="slider-arrow" name="chevron-forward-outline"></ion-icon>
+          </w-flex>
         </div>
+      </div>
     </div>
 </template>
 
@@ -82,20 +81,6 @@ export default {
     }
     .slider-arrow:hover{
         background-color: white;
-    }
-    .add-favorites{
-        opacity: 0;
-        background-color: white;
-        color: black;
-        border-radius: 50%;
-        font-size: 22px;
-        padding: 5px;
-        cursor: pointer;
-        position: absolute;
-        top: 2;
-    }
-    .slider-overlay:hover .add-favorites{
-        opacity: 1;
     }
     .slide-enter-active,.slide-leave-active{
       transition: all 0.5s ease;
