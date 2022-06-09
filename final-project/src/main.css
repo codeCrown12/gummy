@@ -27,6 +27,13 @@ p{
     border-radius: 6px;
     padding: 8px;
 }
+.form-select{
+    width: 100%;
+    border-width: 1px;
+    border-color: rgba(0,0,0,.15);
+    border-radius: 6px;
+    padding: 7px;
+}
 .form-control:focus{
     border-color: #54b946;
 }

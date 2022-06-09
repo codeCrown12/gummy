@@ -17,12 +17,12 @@ export default {
 </script>
 <template>
     <div>
-        <div class="">
+        <div class="flex-padding">
             <h1>Hello Marc,</h1>
             <p class="text-light">This is what we've got for you today.</p>
         </div>
-        <div class="w-flex mt5 wrap">
-            <div class="md3 xs12">
+        <div class="w-flex mt1 wrap">
+            <div class="md3 xs12 flex-padding">
                 <w-card class="overview-card">
                     <div class="w-flex align-center justify-space-between">
                         <div>
@@ -33,7 +33,7 @@ export default {
                     </div>   
                 </w-card>
             </div>
-            <div class="md3 xs12">
+            <div class="md3 xs12 flex-padding">
                 <w-card class="overview-card">
                     <div class="w-flex align-center justify-space-between">
                         <div>
@@ -44,7 +44,7 @@ export default {
                     </div>   
                 </w-card>
             </div>
-            <div class="md3 xs12">
+            <div class="md3 xs12 flex-padding">
                 <w-card class="overview-card">
                     <div class="w-flex align-center justify-space-between">
                         <div>
@@ -55,7 +55,7 @@ export default {
                     </div>   
                 </w-card>
             </div>
-            <div class="md3 xs12">
+            <div class="md3 xs12 flex-padding">
                 <w-card class="overview-card">
                 <div class="w-flex align-center justify-space-between">
                     <div>
@@ -67,32 +67,13 @@ export default {
                 </w-card>
             </div>
         </div>
-        <div class="mt7">
+        <div class="mt3 flex-padding">
             <div class="w-flex align-center justify-space-between">
-                <h3>My bookings</h3>
+                <h3>Revenue Overview</h3>
                 <p><router-link to="/" class="link-underline">See all (10)</router-link></p>
             </div>
             <div class="w-flex wrap mt2">
-                <div class="md4 xs12" v-for="i in 3" :key="i">
-                    <w-card class="ongoing-booking-card">
-                        <imageslider :custom_style="slider_style" :images="images"></imageslider>
-                        <div class="w-flex justify-space-between mt1">
-                            <p class="mb2"><strong>Nice camera X4</strong></p>
-                            <p>AED 500</p>
-                        </div>
-                        <div class="w-flex align-center justify-space-between">
-                            <div>
-                                <p class="text-light">Start Time</p>
-                                <p>29 Nov 2022, 3:30 PM</p>
-                            </div>
-                            <div><ion-icon name="chevron-forward-circle-outline"></ion-icon></div>
-                            <div>
-                                <p class="text-light">Start Time</p>
-                                <p>29 Nov 2022, 3:30 PM</p>
-                            </div>
-                        </div>
-                    </w-card>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -104,18 +85,14 @@ export default {
     text-decoration: underline;
 }
 .overview-card{
-    border-radius: 13px;
+    border-radius: 0px;
     width: 100%;
 }
 .overview-card-icon{
     width: 100px;
     height: 100px;
 }
-.ongoing-booking-card{
-    width: 100%;
-    border-radius: 13px;
-}
-.ongoing-booking-card p{
-    font-size: 13px;
+.flex-padding{
+    padding: 6px;
 }
 </style>

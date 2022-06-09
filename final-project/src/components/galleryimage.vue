@@ -25,7 +25,7 @@ export default {
             <img src="https://images.unsplash.com/photo-1495121553079-4c61bcce1894?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=381&q=80" class="gallery-img" alt="">
             <div class="gallery-img-overlay">
                 <div class="w-flex justify-end align-center">
-                    <w-button @click="dialog1.show = true" bg-color="red" outline title="remove image"><ion-icon style="font-size: 20px;" name="trash-outline"></ion-icon></w-button>
+                    <button @click="dialog1.show = true" class="btn-rem-img" title="remove image"><ion-icon name="trash-outline"></ion-icon></button>
                 </div>
             </div>
         </div>
@@ -43,11 +43,9 @@ export default {
         width: 100%;
         object-fit: cover;
         height: 130px;
-        border-radius: 10px;
     }
     .gallery-img-overlay {
         display: none;
-        border-radius: 10px;
         position: absolute;
         padding: 10px;
         top: 0;
@@ -60,5 +58,13 @@ export default {
     }
     .gallery-img-obj:hover .gallery-img-overlay{
         display: block;
+    }
+    .btn-rem-img{
+        padding: 5px;
+        font-size: 20px;
+        background-color: #ff2222;
+        border: 0;
+        color: #fff;
+        border-radius: 5px;
     }
 </style>

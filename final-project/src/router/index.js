@@ -7,6 +7,7 @@ import userDashboard from '../views/userdashboard/mainlayout.vue'
 import overview from '../views/userdashboard/overview.vue'
 import settings from '../views/userdashboard/settings.vue'
 import inventory from '../views/userdashboard/inventory.vue'
+import listitem from '../views/userdashboard/listitem.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,6 +43,10 @@ const router = createRouter({
         {
           path: '/userdashboard/myinventory',
           component: inventory
+        },
+        {
+          path: '/userdashboard/listitem',
+          component: listitem
         }
       ]
     }

@@ -41,7 +41,7 @@
             <div class="w-flex">
                 <div class="md12">
                     <div wrap class="pa7">
-                        <!-- <h2 class="pl2">Hello, Gummite 👋</h2>    -->
+                        <h2 class="pl2 mb2">Explore items</h2>   
                         <w-flex wrap>
                             <div class="md3 pa2" v-for="i in 12" :key="i">
                                 <item></item>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </w-flex>
-        <footerVue></footerVue>
+        <!-- <footerVue></footerVue> -->
     </div>
 </template>
 

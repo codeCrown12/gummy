@@ -9,7 +9,7 @@ export default {
                 "https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870",
                 "https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876"
             ],
-            slider_style: {'height': '170px', 'border-top-left-radius': '10px', 'border-top-right-radius': '10px'}
+            slider_style: {'height': '150px', 'border-top-left-radius': '5px', 'border-top-right-radius': '5px'}
         }
     },
   components: { imageslider }
@@ -26,7 +26,7 @@ export default {
                         <p class="ma0">AED 200/day</p>
                     </div>
                     <div>
-                        <w-button class="btn" route="/itemdetails" color="success" sm outline>View item</w-button>
+                        <w-button class="btn" route="/itemdetails" color="success" sm outline>More details</w-button>
                     </div>
                 </w-flex>
             </div>
@@ -38,7 +38,7 @@ export default {
     .item-card{
         width: 100%;
         border: 1px solid rgba(0,0,0,.15);
-        border-radius: 10px;
+        border-radius: 5px;
     }
     .item-card-body{
         padding: 10px;

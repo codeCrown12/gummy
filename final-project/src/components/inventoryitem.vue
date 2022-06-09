@@ -59,16 +59,15 @@ import galleryimage from '../components/galleryimage.vue'
             <div class="w-flex wrap">
                 <div class="md6 pa2">
                     <button class="add-img-btn ml1">Add image</button>
-                    <div class="mt1" style="max-height: 430px;overflow-y: auto;">
+                    <div class="mt1" style="max-height: 400px;overflow-y: auto;">
                         <div class="w-flex wrap">
-                        <div class="md6 pa1" v-for="i in 6" :key="i">
-                            <galleryimage></galleryimage>
+                            <div class="md6 pa1" v-for="i in 10" :key="i">
+                                <galleryimage></galleryimage>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div class="md6 pa2">
-                    <h3>ITEM INFORMATION</h3>
                     <div class="mb3 mt2">
                         <label><small>ITEM NAME</small></label>
                         <input type="text" class="form-control mt1" placeholder="Item name goes here...">
@@ -108,6 +107,9 @@ import galleryimage from '../components/galleryimage.vue'
 </template>
 
 <style scoped>
+.item-card{
+    border-radius: 0px;
+}
 .status{
     color: #02b902;
     font-size: 11px;

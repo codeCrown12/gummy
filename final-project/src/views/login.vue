@@ -10,7 +10,7 @@
                 <div class="mb3">
                     <input type="password" class="form-control" placeholder="password">
                 </div>
-                <w-button class="login-btn mb2 text-bold" style="width: 100%;" bg-color="success">Log in</w-button>
+                <w-button class="login-btn mb2" style="width: 100%;" bg-color="success">Log in</w-button>
                 <p class="text-center mb1 mt1"><router-link to="/login" class="text-underline">Forgot password ?</router-link></p>
                 <p class="text-center">Don't have an account? <router-link to="/signup" class="text-underline">Create one</router-link></p>
             </div>

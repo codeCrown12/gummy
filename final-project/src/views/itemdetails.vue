@@ -22,25 +22,15 @@ export default {
 <template>
     <div>
         <navbar></navbar>
-        <div class="container mt8">
+        <div class="container mt8 mb8">
             <w-flex wrap>
                 <!-- Item information -->
                 <div class="md7 pa3">
                     <div>
                         <imageslider :custom_style="slider_style" :images="images"></imageslider>
                         <div class="mt6">
-                            <h3>Description</h3>
-                            <p class="mt3">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum itaque, dicta adipisci laudantium repellat sit ipsam sapiente odio magnam? Earum perferendis qui ratione laboriosam minus nihil suscipit recusandae numquam magni!
-                                <br><br>
-                                Voluptates, aut distinctio esse quia doloribus commodi minima inventore neque sequi
-                                dolores perspiciatis fugiat. Fuga, reprehenderit sequi veritatis iure magnam excepturi
-                                aliquid dolore quo amet deserunt asperiores placeat maxime perferendis.
-                            </p>
-                        </div>
-                        <div class="mt6">
                             <h3>Posted by</h3>
-                            <w-card bg-color="light" class="card-round mt3 mb10" no-border>
+                            <w-card bg-color="light" class="card-round mt3" no-border>
                                 <w-flex align-center>
                                     <img src="../assets/images/undraw_male_avatar_323b.svg" class="user-img" alt="">
                                     <div class="ml3">
@@ -50,6 +40,16 @@ export default {
                                     </div>
                                 </w-flex>
                             </w-card>
+                        </div>
+                        <div class="mt4">
+                            <h3>Description</h3>
+                            <p class="mt3">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum itaque, dicta adipisci laudantium repellat sit ipsam sapiente odio magnam? Earum perferendis qui ratione laboriosam minus nihil suscipit recusandae numquam magni!
+                                <br><br>
+                                Voluptates, aut distinctio esse quia doloribus commodi minima inventore neque sequi
+                                dolores perspiciatis fugiat. Fuga, reprehenderit sequi veritatis iure magnam excepturi
+                                aliquid dolore quo amet deserunt asperiores placeat maxime perferendis.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -91,13 +91,13 @@ export default {
                                     <input type="date" class="form-control mt2">
                                 </div>
                             </w-flex>
-                            <w-button class="mt4 pa5 text-bold" round style="width: 100%;" bg-color="success">Book item now</w-button>
+                            <w-button class="mt4 pa5" round style="width: 100%;" bg-color="success">Book item now</w-button>
                         </div>
                     </div>
                 </div>
             </w-flex>
         </div>
-        <footerVue></footerVue>
+        <!-- <footerVue></footerVue> -->
     </div>
 </template>
 

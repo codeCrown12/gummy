@@ -7,20 +7,21 @@
 </script>
 <template>
     <div class="w-flex">
-        <w-toolbar vertical no-border class="sidebar">
+        <w-toolbar vertical class="sidebar">
             <div class="title2 text-bold"><router-link class="sidebar-logo" to="/">Gummy🍬</router-link></div>
-            <p class="text-center mb4">USER DASHBOARD</p>
+            <p class="text-center mb2">USER DASHBOARD</p>
             <w-divider class="divider"></w-divider>
-            <router-link to="/userdashboard/overview" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="grid"></ion-icon> Overview</router-link>
-            <router-link to="/userdashboard/listitem" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="add-circle"></ion-icon> List item</router-link>
-            <router-link to="/userdashboard/myinventory" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="camera-outline"></ion-icon> My inventory</router-link>
-            <router-link to="/userdashboard/bookings" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="document-outline"></ion-icon> My bookings</router-link>
-            <router-link to="/userdashboard/settings" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="cog"></ion-icon> Settings</router-link>
-            <router-link to="/userdashboard/payouts" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="card"></ion-icon> Payouts</router-link>
+            <router-link to="/userdashboard/overview" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="grid-outline"></ion-icon> Overview</router-link>
+            <router-link to="/userdashboard/listitem" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="add-circle-outline"></ion-icon> List item</router-link>
+            <router-link to="/userdashboard/myinventory" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="list-outline"></ion-icon> My inventory</router-link>
+            <router-link to="/userdashboard/bookings" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="document-outline"></ion-icon> My requests</router-link>
+            <router-link to="/userdashboard/settings" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="cog"></ion-icon> Settings</router-link>
             <div class="spacer"></div>
             <router-link to="/login" class="sidebar-link mb4"><ion-icon class="mr4 sidebar-icon" name="power"></ion-icon> Logout</router-link>
         </w-toolbar>
+        
         <w-drawer width="200px" left v-model="openDrawer" />
+        
         <div class="md12 main-container">
             <w-toolbar>
                 <ion-icon @click="openDrawer = true" class="sidebar-toggler nav-icon mr4" name="menu-outline"></ion-icon>
@@ -42,7 +43,7 @@
                     </div>
                 </div>
             </w-toolbar>
-            <div class="pa8">
+            <div class="pa10">
                 <router-view></router-view>
             </div>
         </div>
@@ -51,33 +52,27 @@
 
 <style scoped>
     .sidebar{
-        background-color: #54b946;
-        width: 200px;
-        color: #fff;
+        width: 210px;
         height: 100vh;
     }
-    .divider{
-        background-color: #fff;
-    }
     .sidebar-logo{
-        color: #fff;
+        color: #000;
     }
     .sidebar-link{
-        color: #fff;
+        color: #000;
         width: 100%;
         padding: 10px;
         border-radius: 25px;
-        font-size: 14px;
+        font-size: 13.5px;
         display: flex;
         align-items: center;
     }
     .sidebar-link:hover{
-        background-color: rgba(255, 255, 255, 0.199);
+        background-color: rgba(128, 128, 128, 0.151);
     }
     .router-link-active, .router-link-active:hover{
-        /* background-color: rgba(255, 255, 255, 0.199); */
-        background-color: #fff;
-        color: green;
+        background-color: #54b946;
+        color: #fff;
     }
     .sidebar-icon{
         font-size: 18px;
