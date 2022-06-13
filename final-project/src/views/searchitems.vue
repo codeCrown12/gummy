@@ -19,8 +19,7 @@
                 <div class="pa5">
                     <p class="text-bold">Categories</p>
                     <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Gaming equipment</span></w-checkbox>
-                    <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Cooking utensils</span></w-checkbox>
-                    <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Books & writing materials</span></w-checkbox>
+                    <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Books & stationery</span></w-checkbox>
                     <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Media equipment</span></w-checkbox>
                     <w-checkbox color="success" class="mt4 filter-checkbox"><span class="pr1 filter-checkbox-text">Musical instruments</span></w-checkbox>
                 </div>
@@ -41,7 +40,7 @@
             <div class="w-flex">
                 <div class="md12">
                     <div wrap class="pa7">
-                        <h2 class="pl2 mb2">Explore items</h2>   
+                        <h2 class="pl2 mb2">Explore items 😎</h2>   
                         <w-flex wrap>
                             <div class="md3 pa2" v-for="i in 12" :key="i">
                                 <item></item>
@@ -51,7 +50,6 @@
                 </div>
             </div>
         </w-flex>
-        <!-- <footerVue></footerVue> -->
     </div>
 </template>
 

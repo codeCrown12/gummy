@@ -4,6 +4,16 @@ export default {
         return{
             showUserToolbar: true
         }
+    },
+    methods: {
+        IsloggedIn(){
+            fetch('http://localhost:5000/users/isloggedin', {
+                method: 'POST',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+        }
     }
 }
 </script>
@@ -22,7 +32,7 @@ export default {
                             <ion-icon name="notifications-outline" class="nav-icon mr3"></ion-icon>
                         </router-link>
                         
-                        <router-link to="/userdashboard/overview">
+                        <router-link to="/userdashboard/myinventory">
                             <img src="../assets/images/undraw_male_avatar_323b.svg" alt="" class="user-img">
                         </router-link>
                     </div>
@@ -36,15 +46,17 @@ export default {
 </template>
 
 <style scoped>
-    /* .navbar{
-        background-color: #3d3d3d;
-    } */
+    .navbar{
+        background-color: #000;
+        padding-top: 4px;
+        padding-bottom: 2px;
+    }
     .navbar-logo{
-        color: #000;
+        color: #fff;
     }
     .nav-icon{
         font-size: 25px;
-        color: #000;
+        color: #fff;
     }
     .user-img{
         border: 1px solid #54b946;

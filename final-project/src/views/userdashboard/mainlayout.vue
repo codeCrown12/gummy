@@ -10,11 +10,11 @@
         <w-toolbar vertical class="sidebar">
             <div class="title2 text-bold"><router-link class="sidebar-logo" to="/">Gummy🍬</router-link></div>
             <p class="text-center mb2">USER DASHBOARD</p>
-            <w-divider class="divider"></w-divider>
-            <router-link to="/userdashboard/overview" class="sidebar-link mt3"><ion-icon class="mr4 sidebar-icon" name="grid-outline"></ion-icon> Overview</router-link>
-            <router-link to="/userdashboard/listitem" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="add-circle-outline"></ion-icon> List item</router-link>
+            <w-divider class="divider mb2"></w-divider>
             <router-link to="/userdashboard/myinventory" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="list-outline"></ion-icon> My inventory</router-link>
-            <router-link to="/userdashboard/bookings" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="document-outline"></ion-icon> My requests</router-link>
+            <router-link to="/userdashboard/listitem" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="add-circle-outline"></ion-icon> List item</router-link>
+            <router-link to="/userdashboard/requests" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="arrow-down-outline"></ion-icon> Booking requests</router-link>
+            <router-link to="/userdashboard/requests" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="document-outline"></ion-icon> My bookings</router-link>
             <router-link to="/userdashboard/settings" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="cog"></ion-icon> Settings</router-link>
             <div class="spacer"></div>
             <router-link to="/login" class="sidebar-link mb4"><ion-icon class="mr4 sidebar-icon" name="power"></ion-icon> Logout</router-link>
@@ -23,7 +23,7 @@
         <w-drawer width="200px" left v-model="openDrawer" />
         
         <div class="md12 main-container">
-            <w-toolbar>
+            <w-toolbar class="navbar">
                 <ion-icon @click="openDrawer = true" class="sidebar-toggler nav-icon mr4" name="menu-outline"></ion-icon>
                 <p>Tuesday 21 May, 2022</p>
                 <div class="spacer"></div>
@@ -51,6 +51,10 @@
 </template>
 
 <style scoped>
+    .navbar{
+            padding-top: 4px;
+            padding-bottom: 2px;
+        }
     .sidebar{
         width: 210px;
         height: 100vh;

@@ -55,7 +55,7 @@ import galleryimage from '../components/galleryimage.vue'
         </w-dialog>
 
         <!-- Edit item details  dialog-->
-        <w-dialog v-model="dialog2.show" transition="bounce" title-class="" title="Edit item Details" :width="700">
+        <w-dialog v-model="dialog2.show" transition="bounce" title="Edit item Details" :width="700">
             <div class="w-flex wrap">
                 <div class="md6 pa2">
                     <button class="add-img-btn ml1">Add image</button>
