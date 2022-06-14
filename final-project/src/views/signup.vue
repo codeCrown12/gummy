@@ -36,7 +36,7 @@ export default {
                 let date = new Date()
                 this.userDetails.date_joined = date
                 this.showDialog1 = true
-                fetch('http://localhost:5000/users/register', {
+                fetch('https://gummy-backend.herokuapp.com/users/register', {
                     method: 'POST',
                     credentials: 'same-origin',
                     body: JSON.stringify(this.userDetails),

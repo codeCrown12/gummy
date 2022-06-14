@@ -25,7 +25,7 @@ export default {
         loginUser(){
             if (this.validateFields) {
                 this.showDialog1 = true
-                fetch('http://localhost:5000/users/login', {
+                fetch('https://gummy-backend.herokuapp.com/users/login', {
                     method: 'POST',
                     credentials: 'same-origin',
                     body: JSON.stringify(this.loginDetails),

@@ -7,7 +7,7 @@ export default {
     },
     methods: {
         IsloggedIn(){
-            fetch('http://localhost:5000/users/isloggedin', {
+            fetch('https://gummy-backend.herokuapp.com/users/isloggedin', {
                 method: 'POST',
                 credentials: 'same-origin',
                 headers: {

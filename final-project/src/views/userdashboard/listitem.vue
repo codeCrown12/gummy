@@ -120,7 +120,7 @@
         addItemToDb(){
             let date = new Date()
             this.itemDetails.date_added = date
-            fetch('http://localhost:5000/items/additem', {
+            fetch('https://gummy-backend.herokuapp.com/items/additem', {
                 method: 'POST',
                 credentials: 'same-origin',
                 body: JSON.stringify(this.itemDetails),
