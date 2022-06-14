@@ -91,6 +91,7 @@
                 })
                 fetch('http://localhost:5000/items/uploadimages', {
                     method:'POST',
+                    credentials: 'same-origin',
                     body: formData
                 })
                 .then(response => response.json().then(res => ({
@@ -121,6 +122,7 @@
             this.itemDetails.date_added = date
             fetch('http://localhost:5000/items/additem', {
                 method: 'POST',
+                credentials: 'same-origin',
                 body: JSON.stringify(this.itemDetails),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"

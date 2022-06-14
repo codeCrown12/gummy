@@ -27,6 +27,7 @@ export default {
                 this.showDialog1 = true
                 fetch('http://localhost:5000/users/login', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     body: JSON.stringify(this.loginDetails),
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
@@ -73,7 +74,7 @@ export default {
                         <div v-else>
                             <p class="text-center"><img src="../assets/images/check.png"/></p>
                             <p class="text-center text-bold">Login successful!</p>
-                            <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" route="/userdashboard/myinventory">Continue to items</w-button></p>   
+                            <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" route="/">Continue to items</w-button></p>   
                         </div>
                     </div>
                 </w-dialog>

@@ -38,6 +38,7 @@ export default {
                 this.showDialog1 = true
                 fetch('http://localhost:5000/users/register', {
                     method: 'POST',
+                    credentials: 'same-origin',
                     body: JSON.stringify(this.userDetails),
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"

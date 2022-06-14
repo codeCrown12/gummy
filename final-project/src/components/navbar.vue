@@ -2,18 +2,37 @@
 export default {
     data(){
         return{
-            showUserToolbar: true
+            showUserToolbar: false
         }
     },
     methods: {
         IsloggedIn(){
             fetch('http://localhost:5000/users/isloggedin', {
                 method: 'POST',
+                credentials: 'same-origin',
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
+            .then(response => response.json().then(res => ({
+                status: response.status,
+                data: res
+            })))
+            .then(res => {
+                if (res.status == 200) {
+                    this.showUserToolbar = true
+                    console.log(res.data.data.msg)
+                }
+                else{
+                    console.log(res.data.error)
+                }
+            })
+            .catch(err => console.log(err)) 
+            console.log('testing')
         }
+    },
+    mounted() {
+        this.IsloggedIn()
     }
 }
 </script>
@@ -37,7 +56,7 @@ export default {
                         </router-link>
                     </div>
                 </div>
-                <div v-else class="action-buttons">
+                <div v-else class="auth-buttons mt1 mb1">
                     <w-button class="btn" route="/login" color="light" sm outline>Login</w-button>
                     <w-button class="btn ml2" route="/signup" bg-color="success" sm>Create an account</w-button>
                 </div>
