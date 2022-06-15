@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
     data(){
         return{
@@ -7,28 +9,20 @@ export default {
     },
     methods: {
         IsloggedIn(){
-            fetch('https://gummy-backend.herokuapp.com/users/isloggedin', {
-                method: 'POST',
-                credentials: 'same-origin',
+            axios.post('http://localhost:5000/users/isloggedin', {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
-            .then(response => response.json().then(res => ({
-                status: response.status,
-                data: res
-            })))
             .then(res => {
-                if (res.status == 200) {
-                    this.showUserToolbar = true
-                    console.log(res.data.data.msg)
-                }
-                else{
-                    console.log(res.data.error)
-                }
+                this.showUserToolbar = true
+                console.log(res.data.data.msg)
             })
-            .catch(err => console.log(err)) 
-            console.log('testing')
+            .catch(err => {
+                if (err.response){
+                    console.log(err.response.data.error)
+                }
+            }) 
         }
     },
     mounted() {

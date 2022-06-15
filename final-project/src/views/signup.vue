@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
     data(){
         return{
@@ -36,30 +38,26 @@ export default {
                 let date = new Date()
                 this.userDetails.date_joined = date
                 this.showDialog1 = true
-                fetch('https://gummy-backend.herokuapp.com/users/register', {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    body: JSON.stringify(this.userDetails),
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/users/register',
+                    body: this.userDetails,
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     }
                 })
-                .then(response => response.json().then(res => ({
-                    status: response.status,
-                    data: res
-                })))
                 .then(res => {
-                    if (res.status == 200) {
-                        this.processing = false
-                        console.log(res.data)
-                    }
-                    else{
+                    this.processing = false
+                    console.log(res.data)
+                })
+                .catch(err => {
+                    if (err.response) {
+                        console.log(err.response.data.error)
                         this.showDialog1 = false
-                        this.errmsg = res.data.error
+                        this.errmsg = err.response.data.error
                         this.showErrMsg = true
                     }
-                })
-                .catch(err => console.log(err))   
+                })   
             }
             else{
                 this.showErrMsg = true

@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
    export default {
     data(){
         return{
@@ -10,9 +12,10 @@
             imageSources: [],
             imgFiles: [],
             itemDetails: {
+                itemId: "",
                 name: "",
                 category: "",
-                user_id: "",
+                userId: "",
                 status: "in inventory",
                 date_added: "",
                 pricing: {
@@ -89,28 +92,20 @@
                 this.imgFiles.forEach((file, index) => {
                     formData.append('item_image', file)
                 })
-                fetch('http://localhost:5000/items/uploadimages', {
-                    method:'POST',
-                    credentials: 'same-origin',
-                    body: formData
+                axios({
+                    method:'post',
+                    url:'http://localhost:5000/items/uploadimages',
+                    data: formData
                 })
-                .then(response => response.json().then(res => ({
-                    status: response.status,
-                    data: res
-                })))
                 .then(res => {
-                    if(res.status == 200){
-                        this.itemDetails.images = res.data
-                        this.addItemToDb()
-                    }
-                    else{
-                        this.showDialog1 = false
-                        this.errmsg = res.data.error
-                        this.showErrMsg = true
-                    }
+                    this.itemDetails.images = res.data
+                    this.addItemToDb()
                 })
-                .catch(e => {
-                    console.error(JSON.stringify(e.message));
+                .catch(err => {
+                    console.log(err.response.data.error)
+                    this.showDialog1 = false
+                    this.errmsg = res.data.error
+                    this.showErrMsg = true
                 });   
             }
             else{
@@ -120,17 +115,19 @@
         addItemToDb(){
             let date = new Date()
             this.itemDetails.date_added = date
-            fetch('https://gummy-backend.herokuapp.com/items/additem', {
-                method: 'POST',
-                credentials: 'same-origin',
-                body: JSON.stringify(this.itemDetails),
+            axios({
+                method: 'post',
+                url:'http://localhost:5000/items/additem',
+                data: this.itemDetails,
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
-            .then(res => res.json())
             .then(res => {
                 this.clearFields()
+            })
+            .catch(err => {
+                console.log(err.response.data.error)
             })
         },
         clearFields(){ 
@@ -206,6 +203,7 @@
                             <option value="">-- Select category --</option>
                             <option value="media equipment">Media equipment</option>
                             <option value="musical instruments">Musical instruments</option>
+                            <option value="electronic gadgets">Electronic gadgets</option>
                         </select>
                     </div>
                 </div>
