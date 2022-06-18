@@ -46,6 +46,13 @@ axios.defaults.withCredentials = true
                 return false
             }
             return true
+        },
+        checkMaxImages(){
+            if(this.imgFiles.length > 6){
+                this.errmsg = 'Maximum of 6 images is allowed'
+                return false
+            }
+            return true
         }
     },
     methods:{
@@ -86,7 +93,7 @@ axios.defaults.withCredentials = true
             this.drop({dataTransfer:src})
         },
         uploadImages(){
-            if (this.validateFields && this.checkIfPhotosAdded) {
+            if (this.validateFields && this.checkIfPhotosAdded && this.checkMaxImages) {
                 this.showDialog1 = true
                 let formData = new FormData();
                 this.imgFiles.forEach((file, index) => {
@@ -104,7 +111,7 @@ axios.defaults.withCredentials = true
                 .catch(err => {
                     console.log(err.response.data.error)
                     this.showDialog1 = false
-                    this.errmsg = res.data.error
+                    this.errmsg = err.response.data.error
                     this.showErrMsg = true
                 });   
             }
@@ -230,7 +237,7 @@ axios.defaults.withCredentials = true
             </div>
             <div class="md6 ml4">
                 <w-card bg-color="secondary" class="ma1 mt0 mb0" no-border>
-                    <small>Images added will be shown below. You can add and remove as many files as possible.</small>
+                    <small>Images added will be shown below. You can add and remove up to six images.</small>
                 </w-card>
                 <div class="w-flex wrap mt2 border">
                     <div class="md3 pa1" v-for="img in imageSources" :key="img">

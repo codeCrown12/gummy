@@ -1,5 +1,7 @@
 <script>
 import galleryimage from '../components/galleryimage.vue'
+import axios from 'axios'
+axios.defaults.withCredentials = true
    export default {
     components: { galleryimage },
     props:{
@@ -26,12 +28,50 @@ import galleryimage from '../components/galleryimage.vue'
                 minutes = '0' + minutes;
             }
             return year+'-' + month + '-'+dt+' '+hours+':'+minutes
+        },
+        validateFields(){
+            if (this.itemDetails.name == "" || this.itemDetails.category == "" || this.itemDetails.pricing.priceOne == ""
+            || this.itemDetails.pricing.priceTwo == "" || this.itemDetails.pricing.priceThree == "") {
+                this.errmsg = 'All fields are required'
+                return false
+            }
+            return true
+        },
+        photosAddedForUpload(){
+            if (this.imgFiles.length < 1) {
+                return false
+            }
+            return true
+        },
+        photosAddedForDelete(){
+            if (this.imgSelectedForDelete.length < 1) {
+                return false
+            }
+            return true
+        },
+        checkNumOfImagesToBeSaved(){
+            let totNumOfImgs = this.imgFiles.length + this.itemDetails.images.length
+            if (totNumOfImgs > 6) {
+                this.errmsg = 'You can only have a maximum of six images'
+                return false
+            }
+            else if(totNumOfImgs < 1){
+                this.errmsg = 'You must add at least one image'
+                return false
+            }
+            return true
         }
     },
     data(){
         return{
-            dialog1: { show: false },
+            dialog1: {show: false},
             dialog2: {show: false},
+            dialog3: {show: false},
+            dialog4: {show: false},
+            showErrMsg: false,
+            errmsg: "",
+            processing: true,
+            imgSelectedForDelete: [],
             imageSources: [],
             imgFiles: [],
         }
@@ -61,10 +101,110 @@ import galleryimage from '../components/galleryimage.vue'
             var src = this.$el.querySelector('#manualFileSelect')
             this.drop({dataTransfer:src})
         },
-        removeImage(img){
+        removeNewlyAddedImage(img){
             let item_index = this.imageSources.indexOf(img)
             this.imageSources.splice(item_index, 1)
             this.imgFiles.splice(item_index, 1)
+        },
+        removeExistingImage(img){
+            let imgIndex = this.itemDetails.images.indexOf(img)
+            this.itemDetails.images.splice(imgIndex, 1)
+            this.imgSelectedForDelete.push(img)
+        },
+        deleteSelectedImgs(){
+            if (this.photosAddedForDelete) {
+               axios({
+                    method:'delete',
+                    url:'http://localhost:5000/remove_files',
+                    data: this.imgSelectedForDelete
+                })
+                .then(res => {
+                    console.log(res.data)
+                    this.uploadNewImgs()
+                })
+                .catch(err => {
+                    console.log(err.response.data.error)
+                    this.errmsg = err.response.data.error
+                });
+            }
+            else this.uploadNewImgs()
+        },
+        uploadNewImgs(){
+            if(this.photosAddedForUpload){
+                let formData = new FormData();
+                this.imgFiles.forEach((file, index) => {
+                    formData.append('item_image', file)
+                })
+                axios({
+                    method:'post',
+                    url:'http://localhost:5000/items/uploadimages',
+                    data: formData
+                })
+                .then(res => {
+                    let imgsarr = res.data.concat(this.itemDetails.images)
+                    this.itemDetails.images = imgsarr
+                    this.updateItemDetailsInDb()
+                })
+                .catch(err => {
+                    console.log(err.response.data.error)
+                    this.errmsg = err.response.data.error
+                });  
+            }
+            else this.updateItemDetailsInDb()
+        },
+        updateItemDetailsInDb(){
+            let dbItemDetails = {
+                itemId: this.itemDetails.itemId,
+                name: this.itemDetails.name,
+                category: this.itemDetails.category,
+                userId: this.itemDetails.userId,
+                pricing: {
+                    priceOne: this.itemDetails.pricing.priceOne,
+                    priceTwo: this.itemDetails.pricing.priceTwo,
+                    priceThree: this.itemDetails.pricing.priceThree
+                },
+                images: this.itemDetails.images,
+                description: this.itemDetails.description
+            }
+            axios({
+                method: 'put',
+                url:'http://localhost:5000/items/updateitemdetails',
+                data: dbItemDetails,
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(res => {
+                this.finishProcess()
+            })
+            .catch(err => {
+                console.log(err.response.data.error)
+            })
+        },
+        finishProcess(){ 
+            this.imageSources = []
+            this.imgFiles = []
+            this.imgSelectedForDelete = []
+            this.processing = false
+        },
+        closeProcessModals(){
+            this.dialog4.show = false
+        },
+        saveChanges(){
+            if (this.validateFields && this.checkNumOfImagesToBeSaved) {
+                this.dialog3.show = false
+                this.dialog4.show = true
+                this.deleteSelectedImgs()
+            }
+            else{
+                this.dialog3.show = false
+                this.showErrMsg = true
+            }
+        },
+        deleteItem(){
+            let itemDetails = {itemId: this.itemDetails.itemId, images: this.itemDetails.images}
+            this.$emit('deleteItem', itemDetails)
+            this.dialog1.show = false
         }
     }
 }
@@ -78,10 +218,10 @@ import galleryimage from '../components/galleryimage.vue'
             </div>
             <div>
                 <p>{{itemDetails.name}}</p>
+                <div class="w-flex align-center"><small class="status"><ion-icon name="paper-plane-outline"></ion-icon> out for rent</small></div>
             </div>
             <div>
                 <p>{{itemDetails.category}}</p>
-                <div class="w-flex align-center"><small class="status"><ion-icon name="paper-plane-outline"></ion-icon> out for rent</small></div>
             </div>
             <div>
                 <p><small>AED <span class="text-bold">{{itemDetails.pricing.priceOne}}</span> Daily</small></p>
@@ -104,7 +244,7 @@ import galleryimage from '../components/galleryimage.vue'
             <p style="font-size: 14px;">Do you really want to remove this item from your inventory?</p>
             <template #actions>
                 <div class="spacer" />
-                <w-button class="mr2 btn" @click="dialog1.show = false" color="error" sm outline>
+                <w-button class="mr2 btn" @click="deleteItem" color="error" sm outline>
                     Yes remove
                 </w-button>
                 <w-button class="btn" @click="dialog1.show = false" bg-color="success" sm>
@@ -114,11 +254,40 @@ import galleryimage from '../components/galleryimage.vue'
         </w-dialog>
 
         <!-- Edit item details  dialog-->
-        <w-dialog v-model="dialog2.show" transition="bounce" title="Edit item Details" :width="740">
+        <w-dialog v-model="dialog2.show" transition="bounce" title="Edit item Details" :width="800">
+            
+            <w-dialog v-model="dialog3.show" title="Confirm action !" overlay-opacity="0.4" transition="bounce" :width="340">
+                <p style="font-size: 14px;">Are you sure you want to save the changes made ?</p>
+                <p class="mt1"><small><strong>Note:</strong> If you're not sure, refresh this page and try again</small></p>
+                <template #actions>
+                    <div class="spacer" />
+                    <w-button class="mr2 btn" @click="saveChanges" bg-color="success" sm>
+                        Yes save changes
+                    </w-button>
+                    <w-button class="btn" @click="dialog3.show = false" color="error" sm outline>
+                        Cancel
+                    </w-button>
+                </template>
+            </w-dialog>
+
+            <w-dialog persistent v-model="dialog4.show" transition="bounce" :width="320">
+                <div class="w-flex justify-center">
+                    <div v-if="processing">
+                        <p class="text-center"><w-spinner color="success" /></p>
+                        <p class="mt2 text-center text-bold">Processing please wait...</p>
+                    </div>
+                    <div v-else>
+                        <p class="text-center"><img src="../assets/images/check.png"/></p>
+                        <p class="text-center text-bold">Item details updated successfully!</p>
+                        <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" @click="closeProcessModals">Complete process</w-button></p>   
+                    </div>
+                </div>
+            </w-dialog>
+            
             <div class="w-flex wrap">
-                <div class="md6 pa2">
-                    <div>
-                        <label class="w-button success--bg size--sm btn ml1" for="manualFileSelect">Add new image</label>
+                <div class="md6 pa2" style="max-height: 400px;overflow-y: auto;">
+                    <div class="mb1">
+                        <label class="w-button success--bg size--sm btn ml1" for="manualFileSelect">Add new image(s)</label>
                         <input id="manualFileSelect" style="display: none;" multiple type="file" @change="selectFile">
                     </div>
 
@@ -133,7 +302,7 @@ import galleryimage from '../components/galleryimage.vue'
                                         <img :src="image" class="prev-img" alt=""/>
                                     </div>
                                     <div class="ma0">
-                                        <ion-icon @click="removeImage(image)" class="del-icon" name="close-outline"></ion-icon>
+                                        <ion-icon @click="removeNewlyAddedImage(image)" class="del-icon" name="close-outline"></ion-icon>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +320,7 @@ import galleryimage from '../components/galleryimage.vue'
                                     <img :src="image" class="prev-img" alt=""/>
                                 </div>
                                 <div class="ma0">
-                                    <ion-icon class="del-icon" name="close-outline"></ion-icon>
+                                    <ion-icon @click="removeExistingImage(image)" class="del-icon" name="close-outline"></ion-icon>
                                 </div>
                             </div>
                         </div>
@@ -160,6 +329,12 @@ import galleryimage from '../components/galleryimage.vue'
 
                 </div>
                 <div class="md6 pa2">
+                    <w-alert v-if="showErrMsg" error icon-outside>
+                        <div class="w-flex justify-space-between align-center">
+                            <p>{{errmsg}}!</p>
+                            <div><ion-icon class="del-icon" @click="this.showErrMsg = false" name="close-outline"></ion-icon></div>
+                        </div>
+                    </w-alert>
                     <div class="mb3 mt2">
                         <label><small>ITEM NAME</small></label>
                         <input type="text" v-model="itemDetails.name" class="form-control mt1" placeholder="Item name goes here...">
@@ -193,7 +368,7 @@ import galleryimage from '../components/galleryimage.vue'
                         <label><small>ITEM DESCRIPTION</small></label>
                         <textarea class="form-control mt1" v-model="itemDetails.description" placeholder="Item description goes here..." rows="7"></textarea>
                     </div>
-                    <w-button class="mt1 btn" bg-color="success">Save changes</w-button>
+                    <w-button @click="dialog3.show = true" class="mt1 btn" bg-color="success">Save changes</w-button>
                 </div>
             </div>
         </w-dialog>
@@ -237,7 +412,7 @@ import galleryimage from '../components/galleryimage.vue'
     width: 100%;
 }
 .prev-img{
-    width: 70px;
+    width: 75px;
     height: 40px;
     object-fit: cover;
     border-radius: 5px;

@@ -56,7 +56,10 @@
                     </w-card>
                 </div>
             </div>   
-            <h3 class="section-header mt8">Change Security Information <ion-icon name="lock-closed-outline"></ion-icon></h3>
+            
+            <!-- SECURITY INFORMATION UPDATE SECTION -->
+
+            <!-- <h3 class="section-header mt8">Change Security Information <ion-icon name="lock-closed-outline"></ion-icon></h3>
             <w-divider class="divider mt2"></w-divider> 
             <div class="w-flex mt4">
                 <div class="md5">
@@ -79,7 +82,7 @@
                         <small>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum in accusamus quam hic, facere suscipit animi odit, obcaecati asperiores tempora praesentium velit voluptatum minima omnis itaque ea enim mollitia. Vitae?</small>
                     </w-card>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
