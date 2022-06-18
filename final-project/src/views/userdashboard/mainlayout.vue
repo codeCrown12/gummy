@@ -29,7 +29,7 @@
                 <div class="spacer"></div>
                 <div>
                     <div class="w-flex align-center">
-                        <router-link to="/" class="mr3">
+                        <router-link style="background-color: #fff;" to="/userdashboard/listitem" class="mr3">
                             <ion-icon title="List an item" class="nav-icon" name="add-circle-outline"></ion-icon>
                         </router-link>
                         
