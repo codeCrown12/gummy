@@ -35,7 +35,7 @@ export default {
       </transition-group>
       <div class="slider-overlay" :style="custom_style">
         <div class="slider-overlay-body">
-          <w-flex class="slider-controls" justify-space-between>
+          <w-flex v-if="images.length >= 2" class="slider-controls" justify-space-between>
             <ion-icon @click="prev" class="slider-arrow" name="chevron-back-outline"></ion-icon>
             <ion-icon @click="next" class="slider-arrow" name="chevron-forward-outline"></ion-icon>
           </w-flex>

@@ -38,22 +38,16 @@ axios.defaults.withCredentials = true
                 this.errmsg = 'All fields are required'
                 return false
             }
-            return true
-        },
-        checkIfPhotosAdded(){
-            if (this.imgFiles.length < 1) {
+            else if(this.imgFiles.length < 1){
                 this.errmsg = 'You must add at least one image'
                 return false
             }
-            return true
-        },
-        checkMaxImages(){
-            if(this.imgFiles.length > 6){
+            else if(this.imgFiles.length > 6){
                 this.errmsg = 'Maximum of 6 images is allowed'
                 return false
             }
             return true
-        }
+        },
     },
     methods:{
         dragOver(){
@@ -93,7 +87,7 @@ axios.defaults.withCredentials = true
             this.drop({dataTransfer:src})
         },
         uploadImages(){
-            if (this.validateFields && this.checkIfPhotosAdded && this.checkMaxImages) {
+            if (this.validateFields) {
                 this.showDialog1 = true
                 let formData = new FormData();
                 this.imgFiles.forEach((file, index) => {

@@ -10,13 +10,15 @@ export default {
             errmsg: '',
             userDetails: {
                 userId: '',
-                firstname: '',
-                lastname: '',
+                username: '',
                 email: '',
                 mobile_number: '',
+                bio: '',
+                address: '',
                 student_number: '',
                 password: '',
                 date_joined: '',
+                profile_image: '',
                 email_verified: false,
                 notifications: true
             }
@@ -41,7 +43,7 @@ export default {
                 axios({
                     method: 'post',
                     url: 'http://localhost:5000/users/register',
-                    body: this.userDetails,
+                    data: this.userDetails,
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     }
@@ -97,10 +99,7 @@ export default {
                 <!-- End of status and error dialogs -->
 
                 <div class="mb3">
-                    <input type="text" v-model="userDetails.firstname" class="form-control" placeholder="First name">
-                </div>
-                <div class="mb3">
-                    <input type="text" v-model="userDetails.lastname" class="form-control" placeholder="Last name">
+                    <input type="text" v-model="userDetails.username" class="form-control" placeholder="Username">
                 </div>
                 <div class="mb3">
                     <input type="text" v-model="userDetails.student_number" class="form-control" placeholder="MISIS number">

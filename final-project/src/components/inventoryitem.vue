@@ -77,7 +77,7 @@ axios.defaults.withCredentials = true
         }
     },
     methods: {
-        async drop(e){
+        async previewImg(e){
             let files = [...e.dataTransfer.files]
             let images = files.filter(file => file.type.indexOf('image/') >= 0)
             let promises = []
@@ -99,7 +99,7 @@ axios.defaults.withCredentials = true
         },
         selectFile(){
             var src = this.$el.querySelector('#manualFileSelect')
-            this.drop({dataTransfer:src})
+            this.previewImg({dataTransfer:src})
         },
         removeNewlyAddedImage(img){
             let item_index = this.imageSources.indexOf(img)
@@ -154,10 +154,9 @@ axios.defaults.withCredentials = true
         },
         updateItemDetailsInDb(){
             let dbItemDetails = {
-                itemId: this.itemDetails.itemId,
                 name: this.itemDetails.name,
+                itemId: this.itemDetails.itemId,
                 category: this.itemDetails.category,
-                userId: this.itemDetails.userId,
                 pricing: {
                     priceOne: this.itemDetails.pricing.priceOne,
                     priceTwo: this.itemDetails.pricing.priceTwo,

@@ -88,7 +88,7 @@ export default {
                     <p class="mt2 text-center text-bold">Processing please wait...</p>
                 </div>
                 <div v-else>
-                    <p class="text-center"><img src="../../assets/images/check.png"/></p>
+                    <p class="text-center"><img src="/src/assets/images/check.png"/></p>
                     <p class="text-center text-bold">Item deleted successfully</p>
                     <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" @click="dialog4.show = false">Complete process</w-button></p>   
                 </div>
@@ -97,7 +97,7 @@ export default {
 
         <div v-if="items < 1">
             <div class="w-flex wrap justify-center">
-                <img class="warning-img" src="../../assets/images/no_items.svg" alt="">
+                <img class="warning-img" src="/src/assets/images/no_items.svg" alt="">
             </div>
             <h3 class="text-center" style="font-weight: 100;">No items here!</h3>
             <div class="w-flex justify-center mt1">
