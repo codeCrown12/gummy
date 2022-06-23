@@ -4,6 +4,11 @@ export default {
     props:{
         itemDetails: Object
     },
+    computed: {
+        linkToDetails(){
+            return "/itemdetails/"+this.itemDetails.itemId
+        }
+    },
     data(){
         return{
             slider_style: {'height': '120px', 'border-top-left-radius': '0px', 'border-top-right-radius': '0px'}
@@ -24,7 +29,7 @@ export default {
                     </div>
                 </div>
                 <div class="mt2">
-                    <w-button style="width: 100%; padding: 13px;" class="btn" route="/itemdetails" color="success" sm outline>More details</w-button>
+                    <w-button style="width: 100%; padding: 13px;" class="btn" :route="linkToDetails" color="success" sm outline>More details</w-button>
                 </div>
             </div>
         </div>

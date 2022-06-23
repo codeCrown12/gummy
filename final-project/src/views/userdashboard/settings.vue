@@ -5,7 +5,7 @@ export default {
     data(){
         return{
             processing: true,
-            showDialog1: true,
+            showDialog: true,
             showErrMsg: false,
             errmsg: '',
             imageFile: null,
@@ -58,7 +58,7 @@ export default {
                 if (this.userDetails.profile_image != '') {
                     this.filenameInDb = this.userDetails.profile_image.substring(37)
                 }
-                this.showDialog1 = false
+                this.showDialog = false
             })
             .catch(err => {
                 if (err.response) {
@@ -114,7 +114,7 @@ export default {
             })
             .catch(err => {
                 console.log(err.response.data.error)
-                this.showDialog1 = false
+                this.showDialog = false
                 this.errmsg = err.response.data.error
                 this.showErrMsg = true
             }); 
@@ -130,14 +130,14 @@ export default {
                 })
                 .catch(err => {
                     console.log(err.response.data.error)
-                    this.showDialog1 = false
+                    this.showDialog = false
                     this.errmsg = err.response.data.error
                     this.showErrMsg = true
                 });
         },
         saveChanges(){
             if (this.validateFields) {
-                this.showDialog1 = true
+                this.showDialog = true
                 if (this.imageFile != null) {
                     this.uploadImage()
                 }
@@ -170,7 +170,7 @@ export default {
                         </div>
                     </w-alert>
 
-                    <w-dialog persistent v-model="showDialog1" transition="bounce" :width="320">
+                    <w-dialog persistent v-model="showDialog" transition="bounce" :width="320">
                         <div class="w-flex justify-center">
                             <div v-if="processing">
                                 <p class="text-center"><w-spinner color="success" /></p>
@@ -179,10 +179,11 @@ export default {
                             <div v-else>
                                 <p class="text-center"><img src="/src/assets/images/check.png"/></p>
                                 <p class="text-center text-bold">Details updated successfully!</p>
-                                <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" @click="showDialog1 = false">Complete process</w-button></p>   
+                                <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" @click="showDialog = false">Complete process</w-button></p>   
                             </div>
                         </div>
                     </w-dialog>
+                    
                     <div class="w-flex align-center mb3">
                         <div>
                             <img class="user-img" :src="showProfileImg" alt="">

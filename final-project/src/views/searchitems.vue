@@ -15,6 +15,7 @@
         },
         methods: {
             fetchItems(){
+                this.showDialog = true
                 axios({
                     method: 'get',
                     url: 'http://localhost:5000/items/getitems',
@@ -23,7 +24,7 @@
                     }
                 })
                 .then(res => {
-                    console.log(res.data.data)
+                    this.showDialog = false
                     this.items = res.data.data
                 })
                 .catch(err => {
@@ -73,20 +74,19 @@
                 <div class="md12">
                     <div wrap class="pa7">
                         <h2 class="pl2 mb2">Explore items 😎</h2>   
+                        <w-dialog persistent v-model="showDialog" transition="bounce" :width="320">
+                            <div class="w-flex justify-center">
+                                <div v-if="processing">
+                                    <p class="text-center"><w-spinner color="success" /></p>
+                                    <p class="mt2 text-center text-bold">Processing please wait...</p>
+                                </div>
+                            </div>
+                        </w-dialog>
                         <w-flex wrap>
                             <div class="md3 pa2" v-for="item in items" :key="item">
                                 <item :itemDetails="item"></item>
                             </div>
                         </w-flex>
-                        <div v-if="items < 1">
-                            <div class="w-flex wrap justify-center">
-                                <img class="warning-img" src="/src/assets/images/no_items.svg" alt="">
-                            </div>
-                            <h3 class="text-center" style="font-weight: 100;">No items here yet!</h3>
-                            <!-- <div class="w-flex justify-center mt1">
-                                <w-button class="btn pa4" route="/userdashboard/listitem" sm bg-color="success">Add item to inventory</w-button>
-                            </div> -->
-                        </div>
                     </div>
                 </div>
             </div>

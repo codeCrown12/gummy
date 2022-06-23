@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
 import navbar from '../components/navbar.vue';
 import imageslider from '../components/imageslider.vue'
 import item from '../components/item.vue'
@@ -7,15 +9,48 @@ export default {
     components: { navbar, imageslider, item, footerVue },
     data(){
         return{
-            images: [
-                "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870",
-                "https://images.unsplash.com/photo-1580707221190-bd94d9087b7f?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387",
-                "https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870",
-                "https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876"
-            ],
-            slider_style: {'height': '300px', 'border-radius': '5px'}
+            slider_style: {'height': '300px', 'border-radius': '5px'},
+            itemDetails: {
+                itemId: '',
+                name: '',
+                category: '',
+                pricing: {
+                    priceOne: '',
+                    priceTwo: '',
+                    priceThree: ''
+                },
+                images: [],
+                description: ''
+            },
+            showDialog: false,
+            processing: true
         }
     },
+    methods: {
+        getItemDetails(){
+            this.showDialog1 = true
+            axios({
+                    method: 'get',
+                    url: `http://localhost:5000/items/getitemdetails?itemId=${this.$route.params.id}`,
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                })
+                .then(res => {
+                    this.itemDetails = res.data.data
+                    this.showDialog1 = false
+                })
+                .catch(err => {
+                    if (err.response) {
+                        console.log(err.response.data.error)
+                        this.itemDetails = {}
+                    }
+                })
+        }
+    },
+    mounted(){
+        this.getItemDetails()
+    }
 }
 </script>
 
@@ -23,21 +58,30 @@ export default {
     <div>
         <navbar></navbar>
         <div class="container mt8 mb8">
-            <w-flex wrap>
+            <w-dialog persistent v-model="showDialog" transition="bounce" :width="320">
+                <div class="w-flex justify-center">
+                    <div v-if="processing">
+                        <p class="text-center"><w-spinner color="success" /></p>
+                        <p class="mt2 text-center text-bold">Processing please wait...</p>
+                    </div>
+                    <div v-else>
+                        <p class="text-center"><img src="/src/assets/images/check.png"/></p>
+                        <p class="text-center text-bold">Order placed successfully!</p>
+                        <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" @click="showDialog1 = false">Complete process</w-button></p>   
+                    </div>
+                </div>
+            </w-dialog>
+            <w-flex wrap v-if="itemDetails != {}">
                 <!-- Item information -->
                 <div class="md7 pa3">
                     <div>
-                        <imageslider :custom_style="slider_style" :images="images"></imageslider>
+                        <imageslider :custom_style="slider_style" :images="itemDetails.images"></imageslider>
                         <div class="mt6">
                         </div>
                         <div class="mt4">
                             <h2>Description</h2>
                             <p class="mt3">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum itaque, dicta adipisci laudantium repellat sit ipsam sapiente odio magnam? Earum perferendis qui ratione laboriosam minus nihil suscipit recusandae numquam magni!
-                                <br><br>
-                                Voluptates, aut distinctio esse quia doloribus commodi minima inventore neque sequi
-                                dolores perspiciatis fugiat. Fuga, reprehenderit sequi veritatis iure magnam excepturi
-                                aliquid dolore quo amet deserunt asperiores placeat maxime perferendis.
+                                {{itemDetails.description}}
                             </p>
                         </div>
                     </div>
@@ -45,7 +89,7 @@ export default {
                 <!-- Checkout form -->
                 <div class="md5 pa3">
                     <div>
-                        <h1>Panasonic Lumix DMC-G5 DSLR + accessories</h1>
+                        <h1>{{itemDetails.name}}</h1>
                         <w-card class="mt3" bg-color="secondary" no-border>
                             <p class="text-small">Learn more about how renting works on Gummy <router-link to="/" class="text-underline">here</router-link></p>
                         </w-card>
@@ -54,19 +98,19 @@ export default {
                                 <div class="md4 pr2">
                                     <w-card bg-color="white" class="card-round">
                                         <p class="text-center">Daily</p>
-                                        <p class="text-center text-success text-bold mt2">AED 200</p>
+                                        <p class="text-center text-success text-bold mt2">AED {{itemDetails.pricing.priceOne}}</p>
                                     </w-card>
                                 </div>
                                 <div class="md4 pr2">
                                     <w-card bg-color="white" class="card-round">
                                         <p class="text-center">7+ days</p>
-                                        <p class="text-center text-success text-bold mt2">AED 100</p>
+                                        <p class="text-center text-success text-bold mt2">AED {{itemDetails.pricing.priceTwo}}</p>
                                     </w-card>
                                 </div>
                                 <div class="md4">
                                     <w-card bg-color="white" class="card-round">
                                         <p class="text-center">30+ days</p>
-                                        <p class="text-center text-success text-bold mt2">AED 50</p>
+                                        <p class="text-center text-success text-bold mt2">AED {{itemDetails.pricing.priceThree}}</p>
                                     </w-card>
                                 </div>
                             </w-flex>

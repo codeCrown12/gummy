@@ -16,7 +16,7 @@ const router = createRouter({
       component: searchView
     },
     {
-      path: '/itemdetails',
+      path: '/itemdetails/:id',
       component: itemdetailsView
     },
     {
