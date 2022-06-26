@@ -41,10 +41,6 @@ export default {
                             <ion-icon title="List an item" class="nav-icon" name="add-circle-outline"></ion-icon>
                         </router-link>
                         
-                        <router-link to="/">
-                            <ion-icon name="notifications-outline" class="nav-icon mr3"></ion-icon>
-                        </router-link>
-                        
                         <router-link to="/userdashboard/myinventory">
                             <img src="../assets/images/undraw_male_avatar_323b.svg" alt="" class="user-img">
                         </router-link>

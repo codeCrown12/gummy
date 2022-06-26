@@ -21,7 +21,6 @@ export default {
                 }
             })
             .then(res => {
-                console.log(res.data.data)
                 this.items = res.data.data
             })
             .catch(err => {
@@ -104,7 +103,7 @@ export default {
                 <w-button class="btn pa4" route="/userdashboard/listitem" sm bg-color="success">Add item to inventory</w-button>
             </div>
         </div>
-        <div class="mt5">
+        <div class="mt2">
             <inventoryItem @deleteItem="deleteItem($event)" :itemDetails="item" v-for="item in items" :key="item"></inventoryItem>
         </div>
     </div>

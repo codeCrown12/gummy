@@ -7,6 +7,8 @@ import userDashboard from '../views/userdashboard/mainlayout.vue'
 import settings from '../views/userdashboard/settings.vue'
 import inventory from '../views/userdashboard/inventory.vue'
 import listitem from '../views/userdashboard/listitem.vue'
+import bookingRequests from '../views/userdashboard/bookingrequests.vue'
+import paymentresponse from '../views/paymentresponse.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +20,10 @@ const router = createRouter({
     {
       path: '/itemdetails/:id',
       component: itemdetailsView
+    },
+    {
+      path: '/bookingresponse/:data',
+      component: paymentresponse
     },
     {
       path: '/login',
@@ -42,6 +48,10 @@ const router = createRouter({
         {
           path: '/userdashboard/listitem',
           component: listitem
+        },
+        {
+          path: '/userdashboard/bookingrequests',
+          component: bookingRequests
         }
       ]
     }

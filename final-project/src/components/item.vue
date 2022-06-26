@@ -11,7 +11,7 @@ export default {
     },
     data(){
         return{
-            slider_style: {'height': '120px', 'border-top-left-radius': '0px', 'border-top-right-radius': '0px'}
+            slider_style: {'height': '140px', 'border-top-left-radius': '0px', 'border-top-right-radius': '0px'}
         }
     },
   components: { imageslider }

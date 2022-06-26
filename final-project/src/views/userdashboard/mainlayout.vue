@@ -1,8 +1,34 @@
 <script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
    export default {
-       data: () => ({
-            openDrawer: false
-        })
+       data() {
+            return{
+                openDrawer: false,
+                showDialog: false,
+                processing: true
+            }
+        },
+        methods: {
+            logOut(){
+                this.showDialog = true
+                axios.post('http://localhost:5000/users/logout', {
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then(res => {
+                    console.log(res.data.data.msg)
+                    this.showDialog = false
+                    this.$router.push('/login')
+                })
+                .catch(err => {
+                    if (err.response){
+                        console.log(err.response.data.error)
+                    }
+                })
+            }
+        }
    }
 </script>
 <template>
@@ -13,16 +39,25 @@
             <w-divider class="divider mb2"></w-divider>
             <router-link to="/userdashboard/myinventory" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="list-outline"></ion-icon> My inventory</router-link>
             <router-link to="/userdashboard/listitem" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="add-circle-outline"></ion-icon> List item</router-link>
-            <router-link to="/userdashboard/requests" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="arrow-down-outline"></ion-icon> Booking requests</router-link>
-            <router-link to="/userdashboard/requests" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="document-outline"></ion-icon> My bookings</router-link>
+            <router-link to="/userdashboard/bookingrequests" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="arrow-down-outline"></ion-icon> My Bookings</router-link>
             <router-link to="/userdashboard/settings" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="cog"></ion-icon> Settings</router-link>
             <div class="spacer"></div>
-            <router-link to="/login" class="sidebar-link mb4"><ion-icon class="mr4 sidebar-icon" name="power"></ion-icon> Logout</router-link>
+            <p @click="logOut" style="cursor: pointer;" class="sidebar-link mb4"><ion-icon class="mr4 sidebar-icon" name="power"></ion-icon> Logout</p>
         </w-toolbar>
         
         <w-drawer width="200px" left v-model="openDrawer" />
         
         <div class="md12 main-container">
+            
+            <w-dialog persistent v-model="showDialog" transition="bounce" :width="320">
+                <div class="w-flex justify-center">
+                    <div v-if="processing">
+                        <p class="text-center"><w-spinner color="success" /></p>
+                        <p class="mt2 text-center text-bold">Processing please wait...</p>
+                    </div>
+                </div>
+            </w-dialog>
+
             <w-toolbar class="navbar">
                 <ion-icon @click="openDrawer = true" class="sidebar-toggler nav-icon mr4" name="menu-outline"></ion-icon>
                 <p>Tuesday 21 May, 2022</p>
@@ -31,10 +66,6 @@
                     <div class="w-flex align-center">
                         <router-link style="background-color: #fff;" to="/userdashboard/listitem" class="mr3">
                             <ion-icon title="List an item" class="nav-icon" name="add-circle-outline"></ion-icon>
-                        </router-link>
-                        
-                        <router-link to="/">
-                            <ion-icon name="notifications-outline" class="nav-icon mr3"></ion-icon>
                         </router-link>
                         
                         <router-link to="/">

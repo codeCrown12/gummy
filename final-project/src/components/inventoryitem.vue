@@ -217,7 +217,6 @@ axios.defaults.withCredentials = true
             </div>
             <div>
                 <p>{{itemDetails.name}}</p>
-                <div class="w-flex align-center"><small class="status"><ion-icon name="paper-plane-outline"></ion-icon> out for rent</small></div>
             </div>
             <div>
                 <p>{{itemDetails.category}}</p>
@@ -230,7 +229,7 @@ axios.defaults.withCredentials = true
             <div>
                 <w-menu arrow content-class="pa1" left>
                     <template #activator="{ on }">
-                        <ion-icon class="menu-icon" v-on="on" name="ellipsis-vertical"></ion-icon>
+                        <ion-icon class="menu-icon" v-on="on" name="ellipsis-horizontal"></ion-icon>
                     </template>
                     <p class="item-menu-link" @click="dialog2.show = true"><ion-icon name="pencil-outline"></ion-icon> Edit details</p>
                     <p class="item-menu-link" style="color: red;" @click="dialog1.show = true"><ion-icon name="trash-outline"></ion-icon> Remove item</p>
@@ -379,11 +378,7 @@ axios.defaults.withCredentials = true
 .item-card{
     border-radius: 0px;
 }
-.status{
-    color: #02b902;
-    font-size: 11px;
-    font-weight: bold;
-}
+
 .menu-icon{
     border-radius: 50%;
     cursor: pointer;
