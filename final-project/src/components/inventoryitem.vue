@@ -27,7 +27,7 @@ axios.defaults.withCredentials = true
             if (minutes < 10){
                 minutes = '0' + minutes;
             }
-            return year+'-' + month + '-'+dt+' '+hours+':'+minutes
+            return year+'/' + month + '/'+dt+' '+hours+':'+minutes
         },
         validateFields(){
             if (this.itemDetails.name == "" || this.itemDetails.category == "" || this.itemDetails.pricing.priceOne == ""
@@ -217,6 +217,7 @@ axios.defaults.withCredentials = true
             </div>
             <div>
                 <p>{{itemDetails.name}}</p>
+                <p><small>Status: </small><small class="text-bold">{{itemDetails.status}}</small></p>
             </div>
             <div>
                 <p>{{itemDetails.category}}</p>

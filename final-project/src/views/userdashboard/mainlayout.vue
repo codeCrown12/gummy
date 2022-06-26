@@ -60,7 +60,7 @@ axios.defaults.withCredentials = true
 
             <w-toolbar class="navbar">
                 <ion-icon @click="openDrawer = true" class="sidebar-toggler nav-icon mr4" name="menu-outline"></ion-icon>
-                <p>Tuesday 21 May, 2022</p>
+                <p>Hello Mate, 👋</p>
                 <div class="spacer"></div>
                 <div>
                     <div class="w-flex align-center">

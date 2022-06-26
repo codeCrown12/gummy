@@ -102,7 +102,7 @@ export default {
                     <input type="text" v-model="userDetails.username" class="form-control" placeholder="Username">
                 </div>
                 <div class="mb3">
-                    <input type="text" v-model="userDetails.student_number" class="form-control" placeholder="MISIS number">
+                    <input type="text" v-model="userDetails.student_number" class="form-control" placeholder="Student number">
                 </div>
                 <div class="mb3">
                     <input type="email" v-model="userDetails.email" class="form-control" placeholder="Email address">

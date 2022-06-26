@@ -1,5 +1,8 @@
 <script>
+import leasedOut from '../../components/leasedout.vue'
+import myBookings from '../../components/mybookings.vue'
 export default {
+    components: { leasedOut, myBookings },
     data(){
         return{
             tabOne: true,
@@ -39,86 +42,11 @@ export default {
         </div>
 
         <div class="" v-if="tabOne">
-            <w-card class="req-card mb2" v-for="i in 3" :key="i">
-                <div class="w-flex justify-space-between">
-                    <div>
-                        <p><span class="text-bold">#</span>ReqID</p>
-                        <p><small class="text-light">2022-10-02</small></p>
-                    </div>
-                    <div>
-                        <p>Yamaha piano</p>
-                        <p><small><router-link class="card-link" to="/userdashboard/bookingrequests">View item</router-link></small></p>
-                    </div>
-                    <div>
-                        <p>2022/10/12 - 2022/10/15</p>
-                        <p><small class="text-light">5 days</small></p>
-                    </div>
-                    <div>
-                        <p>AED 200</p>
-                    </div>
-                    <div>
-                        <p>@UserID</p>
-                        <p><small><router-link class="card-link" to="/userdashboard/bookingrequests">View profile</router-link></small></p>
-                    </div>
-                </div>
-            </w-card>
+            <myBookings></myBookings>
         </div>
 
         <div class="" v-if="tabTwo">
-            <w-card class="req-card mb2" v-for="i in 3" :key="i">
-                <div class="w-flex justify-space-between">
-                    <div>
-                        <p><span class="text-bold">#</span>ReqID</p>
-                        <p><small class="text-light">2022-10-02</small></p>
-                    </div>
-                    <div>
-                        <p>Yamaha piano</p>
-                        <p><small><router-link class="card-link" to="/userdashboard/bookingrequests">View item</router-link></small></p>
-                    </div>
-                    <div>
-                        <p>2022/10/12 - 2022/10/15</p>
-                        <p><small class="text-light">5 days</small></p>
-                    </div>
-                    <div>
-                        <p><small class="text-success text-bold"><ion-icon name="checkmark-done-outline"></ion-icon> status</small></p>
-                    </div>
-                    <div>
-                        <p>AED 200</p>
-                    </div>
-                    <div>
-                        <p>@UserID</p>
-                        <p><small><router-link class="card-link" to="/userdashboard/bookingrequests">View profile</router-link></small></p>
-                    </div>
-                </div>
-            </w-card>
+            <leasedOut></leasedOut>
         </div>
     </div>
 </template>
-
-<style scoped>
-.req-card{
-    border-radius: 0px;
-}
-.menu-icon{
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 10px;
-}
-.menu-icon:hover{
-    background-color: #dbdbdb;
-}
-.item-menu-link{
-    padding: 7px;
-    color: #000;
-    font-size: 13px;
-    cursor: pointer;
-}
-.item-menu-link:hover{
-    background-color: #d4d4d4a4;
-    border-radius: 3px;
-}
-.card-link{
-    text-decoration: underline; 
-    color: #000;
-}
-</style>

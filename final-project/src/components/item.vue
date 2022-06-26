@@ -25,7 +25,7 @@ export default {
                 <div>
                     <div>
                         <p class="ma0 text-bold">{{itemDetails.name}}</p>
-                        <p class="ma0">AED {{itemDetails.pricing.priceOne}}/day</p>
+                        <p class="ma0" style="font-size: 13px;">AED {{itemDetails.pricing.priceOne}}/day</p>
                     </div>
                 </div>
                 <div class="mt2">

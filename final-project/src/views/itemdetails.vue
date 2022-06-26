@@ -92,14 +92,13 @@ export default {
                 .catch(err => {
                     if (err.response) {
                         console.log(err.response.data.error)
-                        this.itemDetails = {}
                     }
                 })
         },
         submitOrder(){
             if(this.validateFields){
                 this.showDialog = true
-                let reqBody = {itemId: this.$route.params.id, amount: this.getPrice, duration: this.getDuration}
+                let reqBody = {itemId: this.$route.params.id, amount: this.getPrice, duration: this.getDuration, start_date: this.start_date, end_date: this.end_date}
                 axios({
                         method: 'post',
                         url: `http://localhost:5000/items/create-checkout-session`,
