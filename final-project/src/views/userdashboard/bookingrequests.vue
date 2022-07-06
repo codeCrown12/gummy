@@ -37,7 +37,7 @@ export default {
             </div>
             <div class="ml3">
                 <input @click="changeTab" id="tabTwo" type="radio" color="success" class="mr2" name="radio">
-                <label for="tabTwo"><small>Leased Out</small></label>
+                <label for="tabTwo"><small>Rented Out</small></label>
             </div>
         </div>
 

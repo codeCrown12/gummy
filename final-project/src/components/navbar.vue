@@ -33,14 +33,15 @@ export default {
 <template>
     <div>
         <w-toolbar class="navbar">
-            <div class="title2 text-bold"><router-link class="navbar-logo" to="/">Gummy🍬</router-link></div>
+            <div class="title2 text-bold"><router-link class="navbar-logo" to="/">GUMMY🍬</router-link></div>
+                <div class="spacer"></div>
+                <router-link to="/" class="ml12" style="color: #fff; font-size: 14px;">About</router-link>
+                <router-link to="/" class="ml12" style="color: #fff; font-size: 14px;">How it works</router-link>
+                <router-link to="/userdashboard/listitem" class="ml12" style="color: #fff; font-size: 14px;">List an item</router-link>
                 <div class="spacer"></div>
                 <div v-if="showUserToolbar">
                     <div class="w-flex align-center">
-                        <router-link to="/userdashboard/listitem" class="mr3">
-                            <ion-icon title="List an item" class="nav-icon" name="add-circle-outline"></ion-icon>
-                        </router-link>
-                        
+                        <router-link to="/userdashboard/myinventory" class="mr2 mb2" style="color: #fff;"><small>👋 My panel</small></router-link>
                         <router-link to="/userdashboard/myinventory">
                             <img src="../assets/images/undraw_male_avatar_323b.svg" alt="" class="user-img">
                         </router-link>

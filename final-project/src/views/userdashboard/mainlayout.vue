@@ -34,7 +34,7 @@ axios.defaults.withCredentials = true
 <template>
     <div class="w-flex">
         <w-toolbar vertical class="sidebar">
-            <div class="title2 text-bold"><router-link class="sidebar-logo" to="/">Gummy🍬</router-link></div>
+            <div class="title2 text-bold"><router-link class="sidebar-logo" to="/">GUMMY🍬</router-link></div>
             <p class="text-center mb2">USER DASHBOARD</p>
             <w-divider class="divider mb2"></w-divider>
             <router-link to="/userdashboard/myinventory" class="sidebar-link mt2"><ion-icon class="mr4 sidebar-icon" name="list-outline"></ion-icon> My inventory</router-link>
@@ -64,10 +64,7 @@ axios.defaults.withCredentials = true
                 <div class="spacer"></div>
                 <div>
                     <div class="w-flex align-center">
-                        <router-link style="background-color: #fff;" to="/userdashboard/listitem" class="mr3">
-                            <ion-icon title="List an item" class="nav-icon" name="add-circle-outline"></ion-icon>
-                        </router-link>
-                        
+                        <router-link to="/" class="mr2 mb2" style="color: #000;"><small>👋 My panel</small></router-link>  
                         <router-link to="/">
                             <img src="../../assets/images/undraw_male_avatar_323b.svg" alt="" class="user-img">
                         </router-link>

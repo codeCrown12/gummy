@@ -22,6 +22,7 @@ export default {
             })
             .then(res => {
                 this.items = res.data.data
+                this.items.reverse()
             })
             .catch(err => {
                 if (err.response) {
@@ -94,7 +95,7 @@ export default {
             </div>
         </w-dialog>
 
-        <div v-if="items < 1">
+        <div v-if="items.length < 1">
             <div class="w-flex wrap justify-center">
                 <img class="warning-img" src="/src/assets/images/no_items.svg" alt="">
             </div>

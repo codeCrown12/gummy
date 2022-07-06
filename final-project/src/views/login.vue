@@ -59,7 +59,7 @@ export default {
     <div>
         <w-flex class="main-cover" wrap justify-center align-center>
             <div class="form-cover">
-                <h1 class="text-center text-bold mb1"><router-link class="text-dark" to="/">Gummy🍬</router-link></h1>
+                <h1 class="text-center text-bold mb1"><router-link class="text-dark" to="/">GUMMY🍬</router-link></h1>
                 <p class="text-center mb5"><strong>SIGN INTO ACCOUNT</strong></p>
 
                 <!-- Status and error dialogs -->

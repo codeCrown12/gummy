@@ -68,6 +68,15 @@ export default {
 </script>
 <template>
     <div>
+        <div v-if="records.length < 1">
+            <div class="w-flex wrap justify-center">
+                <img class="warning-img" src="/src/assets/images/no_items.svg" alt="">
+            </div>
+            <h3 class="text-center" style="font-weight: 100;">No transactions here!</h3>
+            <div class="w-flex justify-center mt1">
+                <w-button class="btn pa4" route="/userdashboard/listitem" sm bg-color="success">List an item</w-button>
+            </div>
+        </div>
         <w-card class="req-card mb2" v-for="record in records" :key="record">
             <div class="w-flex justify-space-between">
                 <div>
