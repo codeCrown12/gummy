@@ -41,7 +41,7 @@ export default {
         getUserBookings(){
             axios({
                     method: 'get',
-                    url: `http://localhost:5000/items/getbookings`,
+                    url: `https://gummy-backend.herokuapp.com/items/getbookings`,
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },

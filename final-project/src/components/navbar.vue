@@ -9,7 +9,7 @@ export default {
     },
     methods: {
         IsloggedIn(){
-            axios.post('http://localhost:5000/users/isloggedin', {
+            axios.post('https://gummy-backend.herokuapp.com/users/isloggedin', {
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }

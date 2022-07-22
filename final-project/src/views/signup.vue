@@ -42,7 +42,7 @@ export default {
                 this.showDialog1 = true
                 axios({
                     method: 'post',
-                    url: 'http://localhost:5000/users/register',
+                    url: 'https://gummy-backend.herokuapp.com/users/register',
                     data: this.userDetails,
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"

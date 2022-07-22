@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true
         methods: {
             logOut(){
                 this.showDialog = true
-                axios.post('http://localhost:5000/users/logout', {
+                axios.post('https://gummy-backend.herokuapp.com/users/logout', {
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     }

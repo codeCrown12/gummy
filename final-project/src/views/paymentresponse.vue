@@ -19,7 +19,7 @@ export default {
     methods: {
         confirmPayment(){
             if(this.checkStatus){
-                 axios.post(`http://localhost:5000/items/confirmpayment?bookingId=${this.$route.params.data}`, {
+                 axios.post(`https://gummy-backend.herokuapp.com/items/confirmpayment?bookingId=${this.$route.params.data}`, {
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     }

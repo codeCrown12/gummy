@@ -48,7 +48,7 @@ export default {
         getDetails(){
             axios({
                 method: 'get',
-                url: 'http://localhost:5000/users/getuserdetails',
+                url: 'https://gummy-backend.herokuapp.com/users/getuserdetails',
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
@@ -89,7 +89,7 @@ export default {
         deletePhoto(){
             axios({
                 method:'delete',
-                url:'http://localhost:5000/remove_files',
+                url:'https://gummy-backend.herokuapp.com/remove_files',
                 data: this.imageUrlForDelete
             })
             .then(res => {
@@ -105,7 +105,7 @@ export default {
             formData.append('user_image', this.imageFile)
             axios({
                 method:'post',
-                url:`http://localhost:5000/users/uploadprofileimage?filename=${this.filenameInDb}`,
+                url:`https://gummy-backend.herokuapp.com/users/uploadprofileimage?filename=${this.filenameInDb}`,
                 data: formData
             })
             .then(res => {
@@ -122,7 +122,7 @@ export default {
         updateDetails(){
             axios({
                     method:'put',
-                    url:`http://localhost:5000/users/updatedetails`,
+                    url:`https://gummy-backend.herokuapp.com/users/updatedetails`,
                     data: this.userDetails
                 })
                 .then(res => {

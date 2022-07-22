@@ -115,7 +115,7 @@ axios.defaults.withCredentials = true
             if (this.photosAddedForDelete) {
                axios({
                     method:'delete',
-                    url:'http://localhost:5000/remove_files',
+                    url:'https://gummy-backend.herokuapp.com/remove_files',
                     data: this.imgSelectedForDelete
                 })
                 .then(res => {
@@ -137,7 +137,7 @@ axios.defaults.withCredentials = true
                 })
                 axios({
                     method:'post',
-                    url:'http://localhost:5000/items/uploadimages',
+                    url:'https://gummy-backend.herokuapp.com/items/uploadimages',
                     data: formData
                 })
                 .then(res => {
@@ -167,7 +167,7 @@ axios.defaults.withCredentials = true
             }
             axios({
                 method: 'put',
-                url:'http://localhost:5000/items/updateitemdetails',
+                url:'https://gummy-backend.herokuapp.com/items/updateitemdetails',
                 data: dbItemDetails,
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"

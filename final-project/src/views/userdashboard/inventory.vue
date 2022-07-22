@@ -15,7 +15,7 @@ export default {
         fetchItems(){
             axios({
                 method: 'get',
-                url: 'http://localhost:5000/users/getinventory',
+                url: 'https://gummy-backend.herokuapp.com/users/getinventory',
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 }
@@ -34,7 +34,7 @@ export default {
         removeItemImgs(item){
             axios({
                     method:'delete',
-                    url:'http://localhost:5000/remove_files',
+                    url:'https://gummy-backend.herokuapp.com/remove_files',
                     data: item.images
                 })
                 .then(res => {
@@ -48,7 +48,7 @@ export default {
         deleteItemFromDb(item){
             axios({
                     method:'delete',
-                    url:'http://localhost:5000/items/deleteitem',
+                    url:'https://gummy-backend.herokuapp.com/items/deleteitem',
                     data: {itemId: item.itemId}
                 })
                 .then(res => {

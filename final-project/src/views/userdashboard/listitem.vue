@@ -95,7 +95,7 @@ axios.defaults.withCredentials = true
                 })
                 axios({
                     method:'post',
-                    url:'http://localhost:5000/items/uploadimages',
+                    url:'https://gummy-backend.herokuapp.com/items/uploadimages',
                     data: formData
                 })
                 .then(res => {
@@ -118,7 +118,7 @@ axios.defaults.withCredentials = true
             this.itemDetails.date_added = date
             axios({
                 method: 'post',
-                url:'http://localhost:5000/items/additem',
+                url:'https://gummy-backend.herokuapp.com/items/additem',
                 data: this.itemDetails,
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"

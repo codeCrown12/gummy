@@ -80,7 +80,7 @@ export default {
             this.showDialog = true
             axios({
                     method: 'get',
-                    url: `http://localhost:5000/items/getitemdetails?itemId=${this.$route.params.id}`,
+                    url: `https://gummy-backend.herokuapp.com/items/getitemdetails?itemId=${this.$route.params.id}`,
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },
@@ -101,7 +101,7 @@ export default {
                 let reqBody = {itemId: this.$route.params.id, amount: this.getPrice, duration: this.getDuration, start_date: this.start_date, end_date: this.end_date}
                 axios({
                         method: 'post',
-                        url: `http://localhost:5000/items/create-checkout-session`,
+                        url: `https://gummy-backend.herokuapp.com/items/create-checkout-session`,
                         headers: {
                             "Content-type": "application/json; charset=UTF-8"
                         },

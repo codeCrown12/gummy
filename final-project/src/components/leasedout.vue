@@ -44,7 +44,7 @@ export default {
         getLeasedOutBookings(){
             axios({
                     method: 'get',
-                    url: `http://localhost:5000/items/getleasedoutbookings`,
+                    url: `https://gummy-backend.herokuapp.com/items/getleasedoutbookings`,
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     },

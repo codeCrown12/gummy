@@ -18,7 +18,7 @@
                 this.showDialog = true
                 axios({
                     method: 'get',
-                    url: 'http://localhost:5000/items/getitems',
+                    url: 'https://gummy-backend.herokuapp.com/items/getitems',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     }
