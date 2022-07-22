@@ -73,7 +73,7 @@
             <div class="w-flex">
                 <div class="md12">
                     <div wrap class="pa7">
-                        <h2 class="pl2 mb2">Explore items 😎</h2>   
+                        <h2 class="pl2 mb2">Explore items</h2>   
                         <w-dialog persistent v-model="showDialog" transition="bounce" :width="320">
                             <div class="w-flex justify-center">
                                 <div v-if="processing">
